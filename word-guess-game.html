@@ -13,34 +13,49 @@
       "bob", 
       "heliocentrism"
       ]
+
       var random = Math.floor(Math.random() * 3);
+      console.log(random); //console log
       var choice = words[random];
+      console.log(choice); //console log
+      //Incremental variables
       var blank = "";
+      var tries = 0;
       
+      //Making the blank version of the word
       for(i = 0; i < choice.length; i++){
         blank += "_";
       }
+      console.log(blank); //console log
 
+      //KEY PRESS
       document.onkeyup = function(event) {
         var letter = event.key.toLowerCase();
-        for (i = 0; i < choice.length; i++){
-          if (letter === choice.indexOf(i)){
+        console.log(letter); //console log
 
+        //Check through the word for letter
+        for (i = 0; i < choice.length; i++){
+          var cur = choice.indexOf(i);
+          console.log(cur);
+          if (letter === cur){
+            //replacing _ for letter
+            blk = letter;
+            blank = blank.substring(0, i) + blk + blank.substring(i);
+            console.log(blank); 
+            //blank = blank.replaceAll("_", "a");
+            console.log(blank); //console log
+          } else {
+            //nothing
           }
-        }
-        
+        }  
+        tries++;
+        console.log(tries);
       }
-     
-  //   $(document).ready(function() {
-  //     $("#random-button").on("click", function(){
-  //         var blank = "";
-  //         for ( i = 0; i < 9; i ++){
-  //             var random = Math.floor(Math.random() * 10);
-  //             blank = blank + random;
-  //         }
-  //     $("#random-number").prepend("<hr><div>" + blank + "</div>"); //div or <hr><div
-  //     });
-  // });
+      
+  
+      if(tries >= 10) {
+        console.log("You lose");
+      }
 
     </script>
     
