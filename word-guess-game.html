@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Qord Guess Game</title>
+  </head>
+  <body>
+    <h1 class="text-center" id="random-number"></h1>
+    <script>
+
+      var words = [
+      "grandma",
+      "bob", 
+      "heliocentrism"
+      ]
+      var random = Math.floor(Math.random() * 3);
+      var choice = words[random];
+      var blank = "";
+      
+      for(i = 0; i < choice.length; i++){
+        blank += "_";
+      }
+
+      document.onkeyup = function(event) {
+        var letter = event.key.toLowerCase();
+        for (i = 0; i < choice.length; i++){
+          if (letter === choice.indexOf(i)){
+
+          }
+        }
+        
+      }
+     
+  //   $(document).ready(function() {
+  //     $("#random-button").on("click", function(){
+  //         var blank = "";
+  //         for ( i = 0; i < 9; i ++){
+  //             var random = Math.floor(Math.random() * 10);
+  //             blank = blank + random;
+  //         }
+  //     $("#random-number").prepend("<hr><div>" + blank + "</div>"); //div or <hr><div
+  //     });
+  // });
+
+    </script>
+    
+  </body>
+</html>
