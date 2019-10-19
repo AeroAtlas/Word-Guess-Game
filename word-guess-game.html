@@ -19,6 +19,7 @@
 
     <script>
       window.onload = function(){
+      
       var words = [
       "grandma",
       "bob", 
@@ -70,11 +71,14 @@
         console.log(tries); //console log
         //Outputs Tries
         document.getElementById('tries').innerHTML = tries;
+        //Losing Condition (doesn't work yet)
+        if(tries >= 6) {
+          console.log("You lose"); //console log
+          alert("GAME OVER");
+          location.reload();
+        }
       }
-      //Losing Condition (doesn't work yet)
-      if(tries >= 5) {
-        console.log("You lose"); //console log
-      }
+
       //General Output
       document.getElementById('blank').innerHTML = blank;
       document.getElementById('tries').innerHTML = tries;
