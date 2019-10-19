@@ -6,8 +6,19 @@
   </head>
   <body>
     <h1 class="text-center" id="random-number"></h1>
-    <script>
 
+    <h1 id="blank"></h1>
+    <h1 id="tries"></h1>
+
+
+
+
+
+
+
+
+    <script>
+      window.onload = function(){
       var words = [
       "grandma",
       "bob", 
@@ -21,6 +32,7 @@
       //Incremental variables
       var blank = "";
       var tries = 0;
+      var dup = "";
       
       //Making the blank version of the word
       for(i = 0; i < choice.length; i++){
@@ -32,31 +44,34 @@
       document.onkeyup = function(event) {
         var letter = event.key.toLowerCase();
         console.log(letter); //console log
-
-        //Check through the word for letter
         for (i = 0; i < choice.length; i++){
-          var cur = choice.indexOf(i);
-          console.log(cur);
-          if (letter === cur){
-            //replacing _ for letter
-            blk = letter;
-            blank = blank.substring(0, i) + blk + blank.substring(i);
-            console.log(blank); 
-            //blank = blank.replaceAll("_", "a");
+          var current = choice.charAt(i);
+          //Replacing the blanks with the new letters
+          if(current === letter){
+            blank = blank.substring(0, i) + current + blank.substring(i+1);
             console.log(blank); //console log
-          } else {
-            //nothing
-          }
+            document.getElementById('blank').innerHTML = blank;
+            //Takes away tries for being correct
+            if(current = dup){
+              tries = tries - 1;
+            }
+            dup = current;
+          } 
         }  
+        //Adds Tries
         tries++;
-        console.log(tries);
+        console.log(tries); //console log
+        //Outputs Tries
+        document.getElementById('tries').innerHTML = tries;
       }
-      
-  
-      if(tries >= 10) {
-        console.log("You lose");
+      //Losing Condition (doesn't work yet)
+      if(tries >= 5) {
+        console.log("You lose"); //console log
       }
-
+      //General Output
+      document.getElementById('blank').innerHTML = blank;
+      document.getElementById('tries').innerHTML = tries;
+      }
     </script>
     
   </body>
