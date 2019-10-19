@@ -9,7 +9,7 @@
 
     <h1 id="blank"></h1>
     <h1 id="tries"></h1>
-
+    <h1 id="wrong"></h1>
 
 
 
@@ -33,6 +33,7 @@
       var blank = "";
       var tries = 0;
       var dup = "";
+      var wrong = "";
       
       //Making the blank version of the word
       for(i = 0; i < choice.length; i++){
@@ -51,12 +52,18 @@
             blank = blank.substring(0, i) + current + blank.substring(i+1);
             console.log(blank); //console log
             document.getElementById('blank').innerHTML = blank;
-            //Takes away tries for being correct
-            if(current = dup){
+            //Checking if duplicate letter
+            if(current === dup){
+              //nothing
+            } else {
+              //Takes away tries for being correct
               tries = tries - 1;
             }
             dup = current;
-          } 
+          } else if (i+1 === choice.length){
+            wrong = wrong + " "+ letter;
+            document.getElementById('wrong').innerHTML = wrong;
+          }
         }  
         //Adds Tries
         tries++;
@@ -71,6 +78,7 @@
       //General Output
       document.getElementById('blank').innerHTML = blank;
       document.getElementById('tries').innerHTML = tries;
+      document.getElementById('wrong').innerHTML = wrong;
       }
     </script>
     
