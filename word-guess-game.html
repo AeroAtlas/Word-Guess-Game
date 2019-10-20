@@ -2,25 +2,83 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Qord Guess Game</title>
+    <title>Word Guess Game</title>
     <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
+    <!-- Added a link to CSS -->
+    <link rel="stylesheet" type="text/css" href="guess.css">
+
   </head>
+  <!-- BODY -->
   <body>
+    <!-- Top of Page -->
     <h1 class="text-center" id="random-number"></h1>
     <div class="jumbotron">
-      <h1 class="text-center">Word Guess Game</h1>
-      <h3 class="text-center">Try to guess the word! You have 7 tries</h3>
+      <h1 class="text-center">Edgy Word Guess Game</h1>
+      <h3 class="text-center">Try to guess the word! You have 8 tries</h3>
     </div>
 
-    <h1 id="blank"></h1>
+    <!-- Where our variables show -->
+    <div class="container">
+        <!-- Blank ID -->
+        <div class="row">
+          <div class="col-md-6">
+          <h1 id="blank"></h1>
+          <br><br>
+          </div>
+        </div>
+        <!-- Tries ID -->
+        <div class="row">
+          <div class="col-md-3.5">
+            <h1>Tries: </h1>
+            <br><br>
+          </div>
+          <div class="col-md-6">
+            <h1 id="tries"></h1>
+            <br><br>
+          </div>
+        </div>
+        <!-- Wrong ID -->
+        <div class="row">
+          <div class="col-md-3.5">
+             <h1>Wrong Letters: </h1>
+              <br><br>
+          </div>
+          <div class="col-md-6">
+              <h1 id="wrong"></h1>
+            <br><br>
+          </div>
+        </div>
+        <!-- Wins ID -->
+        <div class="row">
+            <div class="col-md-3.5">
+                <h1>Wins:</h1>
+              <br><br>
+            </div>
+          <div class="col-md-6">
+              <h1 id="wins"></h1>
+            <br><br>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+              <br>
+            </div>
+          <div class="col-md-10">
+            <img src="spook2.jpg" alt="spooky">
+          </div>
+        </div>
+
+    </div>
+
+    <!-- <h1 id="blank"></h1>
     <h1 id="tries"></h1>
     <h1 id="wrong"></h1>
-    <h1 id="wins"></h1>
+    <h1 id="wins"></h1> -->
 
 
 
@@ -30,15 +88,21 @@
 
     <script>
       window.onload = function(){
-   
+      
+      //Word Array
       var words = [
-      "grandma",
-      "bob", 
-      "heliocentrism",
-      "hotdog",
-      "automatic",
-
+      "violence",
+      "homicide",
+      "destruction",
+      "death",
+      "damnation",
+      "demon",
+      "slaughter",
+      "vomit",
+      "abuse",
+      "murder"
       ]
+
       //Incremental variables
       var blank = "";
       var tries = 0;
@@ -47,6 +111,7 @@
       var wrong = "";
       var random = "";
       var choice = "";
+      var audio = new Audio('bwom.wav');
 
 
       //Randomize Function
@@ -94,7 +159,7 @@
         //Outputs Tries 
         document.getElementById('tries').innerHTML = tries;
         //Losing Condition
-        if(tries >= 7) {
+        if(tries >= 8) {
           console.log("You lose"); //console log
           alert("GAME OVER");
           location.reload();
@@ -105,9 +170,12 @@
         for(i=0; i<blank.length; i++){
           if(blank.charAt(i) !== "_"){
             wordCount = wordCount + 1;
+            //Checks how many character aren't blank
             if(wordCount === blank.length){
               alert("YOU WIN")
+              audio.play();
               wins = wins + 1;
+              //Resets Everything
               blank = ""; tries = 0; wrong = "";
               randomize();
               output();
